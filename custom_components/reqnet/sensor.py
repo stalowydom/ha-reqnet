@@ -67,7 +67,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_airflow",
-        name="Wydajność wywiewu",
+        name="Wydajność wyciągu",
         index=4,
         native_unit_of_measurement="m³/h",
         state_class=SensorStateClass.MEASUREMENT,
@@ -126,7 +126,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_temperature",
-        name="Temperatura wywiewu",
+        name="Temperatura wyciągu",
         index=58,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -141,7 +141,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_resistance",
-        name="Opór wywiewu",
+        name="Opór wyciągu",
         index=64,
         native_unit_of_measurement=UnitOfPressure.PA,
         state_class=SensorStateClass.MEASUREMENT,
@@ -155,7 +155,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_fan_percent",
-        name="Wysterowanie wentylatora wywiewu",
+        name="Wysterowanie wentylatora wyciągu",
         index=66,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -170,7 +170,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_fan_power",
-        name="Moc wentylatora wywiewu",
+        name="Moc wentylatora wyciągu",
         index=82,
         native_unit_of_measurement=UnitOfPower.WATT,
         device_class=SensorDeviceClass.POWER,
