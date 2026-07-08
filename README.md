@@ -1,52 +1,92 @@
-# reQnet dla Home Assistant
+# reQnet
 
-Integracja Home Assistant dla central wentylacyjnych reQnet.
+Integracja Home Assistant dla central wentylacyjnych **reQnet** z wykorzystaniem lokalnego API HTTP.
 
-> ⚠️ Projekt znajduje się w fazie **Alpha**.
-> Integracja jest rozwijana i testowana. API oraz lista encji mogą ulegać zmianom.
+> ⚠️ **Status projektu: Alpha**
+>
+> Integracja jest rozwijana i testowana. API oraz lista dostępnych encji mogą ulegać zmianom pomiędzy kolejnymi wersjami.
 
 ---
 
-## Funkcje
+# Niezależny projekt społeczności
+
+Ta integracja jest **niezależnym projektem społeczności Open Source**.
+
+Nie jest tworzona, rozwijana ani wspierana przez producenta urządzeń **reQnet** ani firmę **Inprax**.
+
+Projekt wykorzystuje udokumentowane lokalne API HTTP udostępnione przez producenta.
+
+Jeżeli znajdziesz błąd lub masz pomysł na rozwój integracji, zgłoś **Issue** lub **Pull Request**.
+
+---
+
+# Funkcje
 
 Aktualnie integracja udostępnia:
 
-- Status pracy centrali
-- Aktualny nawiew i wyciąg
-- Temperaturę:
+- status pracy centrali
+- aktualny nawiew i wywiew
+- temperatury:
   - czerpni
   - wyrzutni
   - nawiewu
-  - wyciągu
+  - wywiewu
   - wewnętrzną
-- Wilgotność
-- Stężenie CO₂
-- Tryb pracy
-- Status bypassu
-- Moc wentylatorów
-- Dni do wymiany filtrów
+- wilgotność
+- stężenie CO₂
+- tryb pracy
+- status bypassu
+- moc wentylatorów
+- stopień wysterowania wentylatorów
+- opory instalacji
+- liczbę dni do wymiany filtrów
+
+Dodatkowo dostępne są encje diagnostyczne:
+
+- firmware
+- kod błędu
 
 ---
 
-## Wymagania
+# Wymagania
 
-- Home Assistant 2026.x lub nowszy
-- Centrala reQnet z modułem WiFi
-- Dostęp do lokalnego API HTTP
+- Home Assistant 2026.7 lub nowszy
+- Centrala reQnet wyposażona w moduł WiFi
+- Dostęp do lokalnego API HTTP urządzenia
 
 ---
 
-## Instalacja
+# Instalacja przez HACS (zalecana)
 
-### 1. Pobierz repozytorium
+1. Zainstaluj HACS.
+2. Dodaj repozytorium jako **Custom Repository**:
 
-```bash
-git clone https://github.com/stalowydom/ha-reqnet.git
+```
+https://github.com/stalowydom/ha-reqnet
 ```
 
-lub pobierz archiwum ZIP.
+Typ:
 
-### 2. Skopiuj integrację
+```
+Integration
+```
+
+3. Zainstaluj integrację **reQnet**.
+4. Uruchom ponownie Home Assistant.
+5. Dodaj integrację z poziomu:
+
+```
+Ustawienia
+→ Urządzenia i usługi
+→ Dodaj integrację
+→ reQnet
+```
+
+6. Podaj adres IP centrali.
+
+---
+
+# Instalacja ręczna
 
 Skopiuj katalog:
 
@@ -57,97 +97,107 @@ custom_components/reqnet
 do:
 
 ```
-config/custom_components/
+/config/custom_components/
 ```
 
-Powinieneś otrzymać:
-
-```
-config/
-└── custom_components/
-    └── reqnet/
-```
-
-### 3. Restart Home Assistanta
-
-Po restarcie przejdź do:
-
-```
-Ustawienia
-→ Urządzenia i usługi
-→ Dodaj integrację
-```
-
-i wybierz:
-
-```
-reQnet
-```
-
-### 4. Podaj adres IP
-
-Przykład:
-
-```
-192.168.1.133
-```
+Uruchom ponownie Home Assistant.
 
 ---
 
-## Test API
+# Dostępne encje
 
-Przed instalacją możesz sprawdzić działanie API:
+## Pomiary
 
-```bash
-curl "http://192.168.1.133/API/RunFunction?name=CurrentWorkParameters"
-```
+- Temperatura wewnętrzna
+- Temperatura czerpni
+- Temperatura nawiewu
+- Temperatura wywiewu
+- Temperatura wyrzutni
+- Wilgotność względna
+- Stężenie CO₂
+- Wydajność nawiewu
+- Wydajność wywiewu
+- Opór nawiewu
+- Opór wywiewu
+- Wysterowanie wentylatora nawiewu
+- Wysterowanie wentylatora wywiewu
+- Moc wentylatora nawiewu
+- Moc wentylatora wywiewu
+- Dni do wymiany filtrów
 
-Jeżeli odpowiedź zawiera:
+## Status
 
-```json
-"CurrentWorkParametersResult": true
-```
+- Status centrali
+- Tryb pracy
+- Bypass
 
-to integracja powinna połączyć się poprawnie.
+## Diagnostyka
 
----
-
-## Roadmapa
-
-### v0.1
-
-- komunikacja HTTP
-- Config Flow
-- podstawowe sensory
-
-### v0.2
-
-- Binary Sensors
-- pełne tłumaczenia PL
-- diagnostyka
-
-### v0.3
-
-- sterowanie trybami pracy
-- bypass
-- reset filtrów
-
-### v1.0
-
-- publikacja w HACS
-- pełna dokumentacja
-- obsługa wszystkich funkcji API
+- Firmware
+- Kod błędu
 
 ---
 
-## Zgłaszanie błędów
+# Roadmap
 
-Jeżeli znajdziesz problem lub masz pomysł na rozwój integracji, utwórz Issue:
+## v0.2
 
-https://github.com/stalowydom/ha-reqnet/issues
+- sterowanie centralą
+- wybór trybu pracy
+- sterowanie bypass
+- obsługa większej liczby funkcji API
+
+## v0.3
+
+- gotowe dashboardy Home Assistant
+- automatyczne wykrywanie modelu urządzenia
+- pełne tłumaczenia
+
+## v1.0
+
+- kompletna obsługa API
+- stabilna wersja produkcyjna
+- dokumentacja użytkownika
+- dokumentacja dla programistów
 
 ---
 
-## Licencja
+# Zgłaszanie błędów
 
-MIT
+Jeżeli zauważysz problem lub masz pomysł na nową funkcję:
+
+👉 GitHub Issues
+
+Opisując problem podaj:
+
+- model centrali
+- wersję firmware
+- wersję Home Assistanta
+- wersję integracji
+- log błędu (jeżeli występuje)
+
+---
+
+# Wsparcie
+
+Producent urządzeń **reQnet** nie świadczy wsparcia technicznego dla tej integracji.
+
+Wszelkie pytania i zgłoszenia dotyczące integracji należy kierować poprzez GitHub.
+
+---
+
+# Autor
+
+Projekt rozwijany przez społeczność.
+
+Autor projektu:
+
+**Krzysztof Skibicki**
+
+https://stalowydom.com
+
+---
+
+# Licencja
+
+MIT License
