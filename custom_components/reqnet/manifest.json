@@ -1,7 +1,7 @@
 {
   "domain": "reqnet",
   "name": "reQnet",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "documentation": "https://github.com/stalowydom/ha-reqnet",
   "issue_tracker": "https://github.com/stalowydom/ha-reqnet/issues",
   "codeowners": [
