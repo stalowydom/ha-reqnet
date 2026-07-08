@@ -1,0 +1,90 @@
+{
+  "title": "reQnet",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Konfiguracja reQnet",
+        "description": "Podaj adres IP centrali reQnet.",
+        "data": {
+          "host": "Adres IP"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie można połączyć się z centralą reQnet."
+    },
+    "abort": {
+      "already_configured": "Ta centrala reQnet jest już skonfigurowana."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "temperature_current": {
+        "name": "Temperatura wewnętrzna"
+      },
+      "supply_airflow": {
+        "name": "Wydajność nawiewu"
+      },
+      "extract_airflow": {
+        "name": "Wydajność wywiewu"
+      },
+      "humidity": {
+        "name": "Wilgotność względna"
+      },
+      "co2": {
+        "name": "Stężenie CO₂"
+      },
+      "work_mode": {
+        "name": "Tryb pracy"
+      },
+      "bypass": {
+        "name": "Bypass"
+      },
+      "intake_temperature": {
+        "name": "Temperatura czerpni"
+      },
+      "exhaust_temperature": {
+        "name": "Temperatura wyrzutni"
+      },
+      "supply_temperature": {
+        "name": "Temperatura nawiewu"
+      },
+      "extract_temperature": {
+        "name": "Temperatura wywiewu"
+      },
+      "supply_resistance": {
+        "name": "Opór nawiewu"
+      },
+      "extract_resistance": {
+        "name": "Opór wywiewu"
+      },
+      "supply_fan_percent": {
+        "name": "Wentylator nawiewu"
+      },
+      "extract_fan_percent": {
+        "name": "Wentylator wywiewu"
+      },
+      "supply_fan_power": {
+        "name": "Moc wentylatora nawiewu"
+      },
+      "extract_fan_power": {
+        "name": "Moc wentylatora wywiewu"
+      },
+      "filter_days_left": {
+        "name": "Dni do wymiany filtrów"
+      },
+      "error_code": {
+        "name": "Kod błędu"
+      },
+      "firmware_major": {
+        "name": "Firmware major"
+      },
+      "firmware_build": {
+        "name": "Firmware build"
+      },
+      "wifi_firmware": {
+        "name": "Firmware WiFi"
+      }
+    }
+  }
+}
