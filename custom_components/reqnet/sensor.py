@@ -60,21 +60,21 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="supply_airflow",
-        name="Nawiew",
+        name="Wydajność nawiewu",
         index=3,
         native_unit_of_measurement="m³/h",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="extract_airflow",
-        name="Wyciąg",
+        name="Wydajność wyciągu",
         index=4,
         native_unit_of_measurement="m³/h",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="humidity",
-        name="Wilgotność",
+        name="Wilgotność względna",
         index=7,
         native_unit_of_measurement=PERCENTAGE,
         device_class=SensorDeviceClass.HUMIDITY,
@@ -82,7 +82,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="co2",
-        name="CO2",
+        name="Stężenie CO₂",
         index=8,
         native_unit_of_measurement=CONCENTRATION_PARTS_PER_MILLION,
         device_class=SensorDeviceClass.CO2,
@@ -126,7 +126,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_temperature",
-        name="Temperatura wyciągu",
+        name="Temperatura wywiewu",
         index=58,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -236,7 +236,7 @@ class ReqnetSensor(CoordinatorEntity, SensorEntity):
         self._attr_has_entity_name = True
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
-            "name": "reQnet",
+            "name": "reQ",
             "manufacturer": "reQnet",
         }
 
