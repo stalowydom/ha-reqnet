@@ -52,7 +52,7 @@ class ReqnetSensorDescription(SensorEntityDescription):
 SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ReqnetSensorDescription(
         key="temperature_current",
-        translation_key="temperature_current",
+        name="Temperatura wewnętrzna",
         index=2,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -60,21 +60,21 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="supply_airflow",
-        translation_key="supply_airflow",
+        name="Wydajność nawiewu",
         index=3,
         native_unit_of_measurement="m³/h",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="extract_airflow",
-        translation_key="extract_airflow",
+        name="Wydajność wywiewu",
         index=4,
         native_unit_of_measurement="m³/h",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="humidity",
-        translation_key="humidity",
+        name="Wilgotność względna",
         index=7,
         native_unit_of_measurement=PERCENTAGE,
         device_class=SensorDeviceClass.HUMIDITY,
@@ -82,7 +82,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="co2",
-        translation_key="co2",
+        name="Stężenie CO₂",
         index=8,
         native_unit_of_measurement=CONCENTRATION_PARTS_PER_MILLION,
         device_class=SensorDeviceClass.CO2,
@@ -90,19 +90,19 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="work_mode",
-        translation_key="work_mode",
+        name="Tryb pracy",
         index=10,
         value_map=WORK_MODE_MAP,
     ),
     ReqnetSensorDescription(
         key="bypass",
-        translation_key="bypass",
+        name="Bypass",
         index=39,
         value_map=BYPASS_MAP,
     ),
     ReqnetSensorDescription(
         key="intake_temperature",
-        translation_key="intake_temperature",
+        name="Temperatura czerpni",
         index=55,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -110,7 +110,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="exhaust_temperature",
-        translation_key="exhaust_temperature",
+        name="Temperatura wyrzutni",
         index=56,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -118,7 +118,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="supply_temperature",
-        translation_key="supply_temperature",
+        name="Temperatura nawiewu",
         index=57,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -126,7 +126,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_temperature",
-        translation_key="extract_temperature",
+        name="Temperatura wywiewu",
         index=58,
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -134,35 +134,35 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="supply_resistance",
-        translation_key="supply_resistance",
+        name="Opór nawiewu",
         index=63,
         native_unit_of_measurement=UnitOfPressure.PA,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="extract_resistance",
-        translation_key="extract_resistance",
+        name="Opór wywiewu",
         index=64,
         native_unit_of_measurement=UnitOfPressure.PA,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="supply_fan_percent",
-        translation_key="supply_fan_percent",
+        name="Wysterowanie wentylatora nawiewu",
         index=65,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="extract_fan_percent",
-        translation_key="extract_fan_percent",
+        name="Wysterowanie wentylatora wywiewu",
         index=66,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     ReqnetSensorDescription(
         key="supply_fan_power",
-        translation_key="supply_fan_power",
+        name="Moc wentylatora nawiewu",
         index=81,
         native_unit_of_measurement=UnitOfPower.WATT,
         device_class=SensorDeviceClass.POWER,
@@ -170,7 +170,7 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="extract_fan_power",
-        translation_key="extract_fan_power",
+        name="Moc wentylatora wywiewu",
         index=82,
         native_unit_of_measurement=UnitOfPower.WATT,
         device_class=SensorDeviceClass.POWER,
@@ -178,31 +178,31 @@ SENSORS: tuple[ReqnetSensorDescription, ...] = (
     ),
     ReqnetSensorDescription(
         key="filter_days_left",
-        translation_key="filter_days_left",
+        name="Dni do wymiany filtrów",
         index=83,
         native_unit_of_measurement="dni",
     ),
     ReqnetSensorDescription(
         key="error_code",
-        translation_key="error_code",
+        name="Kod błędu",
         index=40,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
     ReqnetSensorDescription(
         key="firmware_major",
-        translation_key="firmware_major",
+        name="Firmware major",
         index=90,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
     ReqnetSensorDescription(
         key="firmware_build",
-        translation_key="firmware_build",
+        name="Firmware build",
         index=91,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
     ReqnetSensorDescription(
         key="wifi_firmware",
-        translation_key="wifi_firmware",
+        name="Firmware WiFi",
         index=93,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
@@ -233,6 +233,7 @@ class ReqnetSensor(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
+        self._attr_name = description.name
         self._attr_has_entity_name = True
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},

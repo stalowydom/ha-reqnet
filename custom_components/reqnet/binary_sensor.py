@@ -23,15 +23,14 @@ class ReqnetBinarySensorDescription(BinarySensorEntityDescription):
 BINARY_SENSORS: tuple[ReqnetBinarySensorDescription, ...] = (
     ReqnetBinarySensorDescription(
         key="status",
-        name="Praca",
+        name="Praca centrali",
         index=0,
         device_class=BinarySensorDeviceClass.RUNNING,
     ),
     ReqnetBinarySensorDescription(
         key="error",
-        name="Błąd",
+        name="Błąd centrali",
         index=40,
-        active_value=0,
         device_class=BinarySensorDeviceClass.PROBLEM,
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
@@ -62,6 +61,7 @@ class ReqnetBinarySensor(CoordinatorEntity, BinarySensorEntity):
         super().__init__(coordinator)
         self.entity_description = description
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
+        self._attr_name = description.name
         self._attr_has_entity_name = True
         self._attr_device_info = {
             "identifiers": {(DOMAIN, entry.entry_id)},
