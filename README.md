@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="docs/images/banner.png" alt="reQnet dla Home Assistant">
+</p>
+
+
 # reQnet
 
 Integracja Home Assistant dla central wentylacyjnych **reQnet** z wykorzystaniem lokalnego API HTTP.
