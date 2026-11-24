@@ -15,7 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     session = async_get_clientsession(hass)
     api = ReqnetApi(session, host)
-    coordinator = ReqnetCoordinator(hass, api)
+    coordinator = ReqnetCoordinator(hass, api, entry)
 
     await coordinator.async_config_entry_first_refresh()
 

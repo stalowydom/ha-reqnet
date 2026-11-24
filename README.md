@@ -111,6 +111,9 @@ Uruchom ponownie Home Assistant.
 
 # Dostępne encje
 
+## Zmiana adresu rekuperatora (od wersji 0.1.5)
+Router bez rezerwacji adresów (np. Starlink) potrafi dać rekuperatorowi nowy adres. Po 3 nieudanych odczytach z rzędu (przy starcie HA – po pierwszym) integracja sama przeszukuje sieć /24 dotychczasowego adresu. Szuka urządzenia, które odpowiada na `CurrentWorkParameters` jak reQnet, zapisuje nowy adres w konfiguracji i pokazuje powiadomienie w HA. Adres można też zmienić ręcznie: Ustawienia → Urządzenia i usługi → reQnet → Zmień konfigurację.
+
 ## Pomiary
 
 - Temperatura wewnętrzna
