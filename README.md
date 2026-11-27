@@ -144,14 +144,28 @@ Router bez rezerwacji adresów (np. Starlink) potrafi dać rekuperatorowi nowy a
 - Firmware
 - Kod błędu
 
+## Sterowanie (od v0.2.0)
+
+Przyciski encji urządzenia reQnet (lokalne REST API centrali):
+
+- **Włącz** (`TurnOn`) – wybudza centralę ze stanu czuwania
+- **Wyłącz (czuwanie)** (`TurnOff`) – np. automatycznie przy alarmie dymu, żeby centrala nie rozprowadzała dymu kanałami
+- **Wietrzenie start / stop** (`TurnOnAiring` / `TurnOffAiring`) – przewietrzanie, np. po spalonym toście; czas i wydajność wietrzenia ustawia się w aplikacji reQnet
+- **Tryb automatyczny** (`AutomaticMode`)
+
+Usługa `reqnet.run_function` wywołuje dowolną funkcję API, także z parametrami (np. `ManualMode`).
+
+Uwaga: według instrukcji reQnet sterowanie zdalne może wymagać ustawienia PIN-u (`SetPinCode`), a część funkcji – wybrania w aplikacji trybu „Sterowanie zewnętrzne”.
+
+
 ---
 
 # Roadmap
 
 ## v0.2
 
-- sterowanie centralą
-- wybór trybu pracy
+- ✅ sterowanie centralą (włącz / czuwanie, wietrzenie, tryb automatyczny, usługa run_function)
+- wybór trybu pracy i wydajności (ManualMode)
 - sterowanie bypass
 - obsługa większej liczby funkcji API
 

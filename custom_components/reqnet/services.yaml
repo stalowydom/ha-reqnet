@@ -1,0 +1,16 @@
+run_function:
+  name: Wywołaj funkcję API reQnet
+  description: Wywołuje dowolną funkcję lokalnego API centrali (/API/RunFunction?name=…), np. ManualMode z parametrami.
+  fields:
+    name:
+      name: Funkcja
+      required: true
+      example: TurnOnAiring
+      selector:
+        text:
+    params:
+      name: Parametry
+      required: false
+      example: '{}'
+      selector:
+        object:

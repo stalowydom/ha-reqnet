@@ -37,3 +37,18 @@ class ReqnetApi:
             raise ReqnetApiError("Invalid reQnet API response: missing Values list")
 
         return values
+
+    async def async_run_function(self, name: str, **params) -> dict:
+        """Call /API/RunFunction?name=<name>[&param=value…] (sterowanie centralą)."""
+        url = f"{self.base_url}/API/RunFunction"
+        query = {"name": name, **{k: str(v) for k, v in params.items()}}
+        try:
+            async with async_timeout.timeout(10):
+                response = await self._session.get(url, params=query)
+                response.raise_for_status()
+                data = await response.json(content_type=None)
+        except Exception as err:
+            raise ReqnetApiError(f"reQnet {name}: {err}") from err
+        if data.get(f"{name}Result") is False:
+            raise ReqnetApiError(f"reQnet {name}: {data.get('Message') or 'odmowa centrali'}")
+        return data

@@ -6,7 +6,7 @@ from .api import ReqnetApi
 from .const import CONF_HOST, DOMAIN
 from .coordinator import ReqnetCoordinator
 
-PLATFORMS = ["sensor", "binary_sensor"]
+PLATFORMS = ["sensor", "binary_sensor", "button"]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -23,6 +23,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = coordinator
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+
+    if not hass.services.has_service(DOMAIN, "run_function"):
+        async def _run_function(call) -> None:
+            name = call.data["name"]
+            params = call.data.get("params") or {}
+            for coord in hass.data.get(DOMAIN, {}).values():
+                await coord.api.async_run_function(name, **params)
+                await coord.async_request_refresh()
+
+        hass.services.async_register(DOMAIN, "run_function", _run_function)
 
     return True
 
